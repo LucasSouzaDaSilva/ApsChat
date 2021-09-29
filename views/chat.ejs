@@ -1,12 +1,19 @@
 <%- include ('partials/header.ejs') %>
+<style>
+  #chat{
+    max-height: 500px;
+    min-height: 500px;
+    overflow-y: scroll;
+  }
+</style>
 <body>
   <%- include ('partials/navbar.ejs') %>
-    <h3>chat greener</h3>
+    <h4>chat greener</h4>
     <div id="chat">
     </div>
-    <input type="text" name="" id="msg">
-    <input type="text" name="" id="username" placeholder="nome do usuário">
-    <button onclick="enviar()">Enviar</button>
+    <input type="text" name="" id="msg" class="form-control" placeholder="Mensagem">
+    <input type="text" name="" id="username" placeholder="nome do usuário" class="form-control">
+    <button onclick="enviar()" class="btn btn-success btn-lg btn-block">Enviar</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
     <script>
       var socket = io('http://localhost:4000')

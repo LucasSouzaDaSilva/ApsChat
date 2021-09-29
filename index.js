@@ -1,9 +1,13 @@
 var express = require('express')
 var app = express()
+const bodyParser = require("body-parser");
 var http = require('http').createServer(app)
 var io = require("socket.io")(http)
 
 app.set("view engine", "ejs")
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.render('chat')
