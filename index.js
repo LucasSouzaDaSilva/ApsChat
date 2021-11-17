@@ -4,18 +4,18 @@ const BodyParser = require("body-parser");
 const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
+var path = require('path');
 
 var login = "admin";
-var senha = "1234";
+var password = "1234";
 
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 app.use(session({ secret: "sadfsdfsdfsd74328r73489" }));
-app.use(BodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.post("/", (req, res) => {
-  
-  if (req.body.senha == senha && req.body.login == login) {
+  if (req.body.password == password && req.body.login == login) {
     //Logado!
     req.session.login = login;
 
