@@ -4,6 +4,14 @@
 <body>
   <%- include ('partials/navbar.ejs') %>
 
-  <h1>Bem vindo a Home Page</h1>
+  <h1>Bem vindo <%= login %>!</h1>
+  <hr>
+
+  <h3>Menu de Opções</h3>
+    <br>
+    <a href="/chat" class="btn btn-success">Chat</a>
+    <a href="/personal" class="btn btn-success">Seu Perfil</a>
+    <a href="/cadastro" class="btn btn-success">Cadastro</a>
+    <a href="/grafico" class="btn btn-success">grafico</a>
 </body>
 <%- include ('partials/footer.ejs') %>
