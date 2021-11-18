@@ -3,6 +3,14 @@ var app = express()
 const bodyParser = require("body-parser");
 var http = require('http').createServer(app)
 var io = require("socket.io")(http)
+const connection = require("./database/database")
+const cadastroModel = require("./database/cadastro")
+
+connection.authenticate().then(()=>{
+  console.log("Conexão feita com o banco de dados :)")
+}).catch((msgErro)=>{
+  console.log("falha: " + msgErro)
+})
 
 app.set("view engine", "ejs")
 app.use(express.static("public"));
