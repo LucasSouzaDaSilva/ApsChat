@@ -1,41 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat</title>
-</head>
+<%- include ('partials/header.ejs') %>
+<style>
+  #chat{
+    max-height: 300px;
+    min-height: 300px;
+    overflow-y: scroll;
+  }
+</style>
 <body>
-  <h3>chat greener</h3>
-  <div id="chat">
-
-  </div>
-  <input type="text" name="" id="msg">
-  <input type="text" name="" id="username" placeholder="nome do usuário">
-  <button onclick="enviar()">Enviar</button>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js">
-
-  </script>
-  <script>
-    var socket = io('http://localhost:3000')
-    socket.on("showmsg", (data) =>{
-      console.log(data)
-      var chat = document.getElementById("chat")
-      var p = document.createElement("p")
-      p.innerHTML = `${data.username}: ${data.msg}` 
-      chat.append(p)
-    })
-
-    function enviar(){
-      var msgField = document.getElementById("msg")
-      var usernameField = document.getElementById("username")
-
-      var msg = msgField.value
-      var username = usernameField.value
-
-      socket.emit("msg", {msg: msg, username: username})
-    }
-  </script>
+  <%- include ('partials/navbar.ejs') %>
+    <h4>chat greener</h4>
+    <div id="chat">
+    </div>
+    <input type="text" name="" id="msg" class="form-control" placeholder="Mensagem">
+    <input type="text" name="" id="username" placeholder="nome do usuário" class="form-control">
+    <button onclick="enviar()" class="btn btn-success btn-lg btn-block">Enviar</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+    <script>
+      var socket = io('http://localhost:4000')
+      socket.on("showmsg", (data) => {
+        console.log(data)
+        var chat = document.getElementById("chat")
+        var p = document.createElement("p")
+        p.innerHTML = `${data.username}: ${data.msg}`
+        chat.append(p)
+      })
+      function enviar() {
+        var msgField = document.getElementById("msg")
+        var usernameField = document.getElementById("username")
+        var msg = msgField.value
+        var username = usernameField.value
+        socket.emit("msg", { msg: msg, username: username })
+      }
+    </script>
 </body>
-</html>
+<%- include ('partials/footer.ejs') %>
