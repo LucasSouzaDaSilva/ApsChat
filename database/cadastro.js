@@ -36,3 +36,5 @@ cadastro.sync({force: false}).then(()=>{
   console.log('Tabela criada')
 }) // vai sincronizar o meu modelo com op banco de dados e se no meu nando cde dados não houver essas tabelas então o sequilçlize vai criar elas.
 // o parm false caso a tabela já exista não vai forçar uma nova criação
+
+module.exports = cadastro

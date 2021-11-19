@@ -1,28 +1,46 @@
 <%- include ('partials/header.ejs') %>
-<body>
-  <%- include ('partials/navbar.ejs') %>
-  
-  <div class="container">
-    <br>
-    <h3>Cadastro</h3>
-    <br>
-    <form action="registro">
-      <label for="">Nome</label>
-      <input type="text" name="Nome">
-      <br>
-      <input type="date" name="Nascimento">
-      <input type="text" name= "RG">
-      <br>
-      <input type="text" name="Endereço">
-      <input type="text" name="email">
-      <br>
-      <input type="text" name="Usuario">
-      <input type="password" name="Senha">
-      <input type="submit" name="Salvar">
-    </form>
-    <a href="/sucess" class="btn btn-success">Salvar</a>
-    <hr>
-  </div>
-  
-</body>
-<%- include ('partials/footer.ejs') %>
+
+  <body>
+    <%- include ('partials/navbar.ejs') %>
+
+      <div class="container">
+        <div class="card" id="formulario-pergunta">
+          <div class="card-header">
+            <h3>
+              Realizar cadastro
+            </h3>
+          </div>
+          <div class="card-body">
+            <br>
+            <h4>Preencha seus dados:</h4>
+            <br>
+            <form method="POST" action="/registrarUser">
+              <label for="">Nome</label>
+              <input type="text" name="name">
+              <br>
+              <label for="">Data de nascimento</label>
+              <input type="date" name="dataNasc">
+              <label for="">RG</label>
+              <input type="text" name="rg">
+              <br>
+              <label for="">Endereço</label>
+              <input type="text" name="address">
+              <label for="">email</label>
+              <input type="text" name="email">
+              <br>
+              <label for="">User</label>
+              <input type="text" name="user">
+              <label for="">Senha</label>
+              <input type="password" name="pass">
+              <br>
+              <button class="btn btn-success">Salvar dados</a>
+            </form>
+            
+            <hr>
+          </div>
+        </div>
+
+      </div>
+
+  </body>
+  <%- include ('partials/footer.ejs') %>

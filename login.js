@@ -19,7 +19,7 @@ app.post('/', (req, res)=>{
   if(req.body.password == password && req.body.login == login){
     
     req.session.login = login
-    res.render('home', {login: login})
+    res.render('menu', {login: login})
     
     
   }else{
@@ -27,7 +27,7 @@ app.post('/', (req, res)=>{
   }
 })
 
-app.get('/', (req, res)=>{
+app.get('/login', (req, res)=>{
   if(req.session.login){
     res.render('home', {login: login})
     console.log("O meu usuário é: " + req.session.login)
@@ -36,18 +36,6 @@ app.get('/', (req, res)=>{
   }
 })
 
-app.get('/login', function(req, res){
-  res.render('login')
-})
-
-app.get('/home', function(req, res){
-  res.render('home')
-})
-
-app.get('/cadastro', function(req, res){
-  var nome = req.body.nome
-  res.render('cadastro')
-})
 
 app.listen(port,()=>{
   console.log('servidor rodando!')

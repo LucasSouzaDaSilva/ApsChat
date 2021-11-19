@@ -3,15 +3,27 @@
 </head>
 <body>
   <%- include ('partials/navbar.ejs') %>
-
-  <h1>Bem vindo <%= login %>!</h1>
-  <hr>
-
-  <h3>Menu de Opções</h3>
-    <br>
-    <a href="/chat" class="btn btn-success">Chat</a>
-    <a href="/personal" class="btn btn-success">Seu Perfil</a>
-    <a href="/cadastro" class="btn btn-success">Cadastro</a>
-    <a href="/grafico" class="btn btn-success">grafico</a>
+  <h2>Seja bem vindo ao Grenner</h2>
+   <div class="card">
+    <h3>Quem somos</h3>
+    <hr>
+    <p>
+      conteudo
+    </p>
+    <h3>Nossa missão</h3>
+    <hr>
+    <p>
+      conteudo
+    </p>
+    <h3>Nossos valores</h3>
+    <hr>
+    <p>
+      conteudo
+    </p>
+   </div>
+   <div>
+     <label for="">Faça o login para poder utilizar nossos serviços:</label>
+     <a href="/login"><button>Login</button></a>
+   </div>
 </body>
 <%- include ('partials/footer.ejs') %>
