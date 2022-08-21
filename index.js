@@ -7,6 +7,7 @@ var io = require("socket.io")(http)
 
 const connection = require("./database/database")
 const cadastro = require("./database/cadastro")
+const usersController = require("./users/UsersController")
 
 connection.authenticate().then(()=>{
   console.log("Conexão feita com o banco de dados :)")
@@ -18,47 +19,26 @@ app.set("view engine", "ejs")
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({secret: 'senha324sdasdsase23', resave: true, saveUninitialized: true}))
+app.use(session({secret: 'aumentaAsegurancaDaSessionTokyo', cookie: {maxAge: 30000}}))
+app.use("/", usersController)
 
-app.post('/login', (req, res)=>{
-  const usuario = cadastro.findOne({
-    where:{
-      user: req.body.login
-    } 
-  }).then(()=>{
-    console.log('Achou o user')
-  })
 
-  const senha = cadastro.findOne({
-    where:{
-      pass: req.body.password
-    } 
-  }).then(()=>{
-    console.log('Achou a senha')
-  })
-
-  console.log("TESTE:" + JSON.stringify(senha))
-
-  
-  if(req.body.password == senha && req.body.login == usuario){
-    
-    req.session.login = usuario
-    res.render('menu', {usuario: usuario})
-    
-    
-  }else{
-    res.render('login')
+app.get("/session", (req, res) => {
+  req.session.ano = 2022
+  req.session.email = "exemplo@email.com"
+  req.session.user = {
+    name: "José",
+    secondName: "Fernandes"
   }
-  
+  res.send("Sessão gerada!")
 })
 
-app.get('/login', (req, res)=>{
-  if(req.session.login){
-    res.render('menu', {login: login})
-    console.log("O meu usuário é: " + req.session.login)
-  }else{
-    res.render('login')
-  }
+app.get("/leitura", (req, res) => {
+  res.json({
+    ano: req.session.ano,
+    email: req.session.email,
+    user: req.session.user
+  })
 })
 
 app.get('/', (req, res) => {
